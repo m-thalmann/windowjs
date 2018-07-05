@@ -24,7 +24,6 @@ WindowJS is a simple JavaScript library, to display a functional window inside o
 ```
 
 3. Add this link-tag to the head of the file, to include the styles
-
 ```html
 <link rel="stylesheet" href="path/to/css/file.css" />
 ```
