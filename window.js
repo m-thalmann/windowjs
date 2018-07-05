@@ -6,7 +6,7 @@
 */
 function Window(title, options){
   'use strict'
-  
+
   var self = this;
   var container = null;
   var num = Window.count++;
@@ -1032,7 +1032,6 @@ Window.HIDE_ON_CLOSE = 1;
 Window.DO_NOTHING_ON_CLOSE = 2;
 
 Window.DOUBLE_CLICK_DELAY = 300; //ms
-Window.RESIZE_OFFSET = 10; //px
 
 const WindowState = {
   NORMAL: 0,
