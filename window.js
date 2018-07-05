@@ -4,8 +4,9 @@
 * @author Matthias Thalmann (https://github.com/m-thalmann/)
 * @license MIT
 */
-
 function Window(title, options){
+  'use strict'
+  
   var self = this;
   var container = null;
   var num = Window.count++;
@@ -627,7 +628,7 @@ function Window(title, options){
       return;
     }
 
-    _size = WindowUtil.getProperty(options, "size", "");
+    var _size = WindowUtil.getProperty(options, "size", "");
 
     if(_size == ""){
       options.size = { width: 200, height: 150 };
@@ -637,12 +638,12 @@ function Window(title, options){
     size.width = WindowUtil.getProperty(_size, "width", 200);
     size.height = WindowUtil.getProperty(_size, "height", 150);
 
-    _min_size = WindowUtil.getProperty(options, "min_size", { width: 200, height: 150 });
-    _max_size = WindowUtil.getProperty(options, "max_size", "");
+    var _min_size = WindowUtil.getProperty(options, "min_size", { width: 200, height: 150 });
+    var _max_size = WindowUtil.getProperty(options, "max_size", "");
 
     if(_min_size != ""){
-      _min_width = WindowUtil.getProperty(_min_size, "width", "");
-      _min_height = WindowUtil.getProperty(_min_size, "height", "");
+      var _min_width = WindowUtil.getProperty(_min_size, "width", "");
+      var _min_height = WindowUtil.getProperty(_min_size, "height", "");
 
       if(_min_width != ""){
         if(size.width < _min_width){
@@ -660,8 +661,8 @@ function Window(title, options){
     }
 
     if(_max_size != ""){
-      _max_width = WindowUtil.getProperty(_max_size, "width", "");
-      _max_height = WindowUtil.getProperty(_max_size, "height", "");
+      var _max_width = WindowUtil.getProperty(_max_size, "width", "");
+      var _max_height = WindowUtil.getProperty(_max_size, "height", "");
 
       if(_max_width != ""){
         if(size.width > _max_width){
@@ -707,7 +708,7 @@ function Window(title, options){
 
     self.on("update_selected")
 
-    _selected = WindowUtil.getProperty(options, "selected", false);
+    var _selected = WindowUtil.getProperty(options, "selected", false);
 
     if(_selected){
       container.classList.add("window_selected");
@@ -788,7 +789,7 @@ function Window(title, options){
 
     var parent = container.parentElement;
 
-    _position = WindowUtil.getProperty(options, "position", "");
+    var _position = WindowUtil.getProperty(options, "position", "");
 
     if(_position == ""){
       options.position = { x: (parent.offsetWidth / 2 - container.offsetWidth / 2), y: (parent.offsetHeight / 2 - container.offsetHeight / 2) };
