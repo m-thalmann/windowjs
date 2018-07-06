@@ -133,8 +133,12 @@ function Window(title, options){
               container.getElementsByClassName('window_button_minimize')[0].innerHTML = value;
               break;
             }
-            case 'toggle_maximize_icon':{
-              container.getElementsByClassName('window_button_toggle_maximize')[0].innerHTML = value;
+            case 'maximize_icon':{
+              changeSizeState(size_state);
+              break;
+            }
+            case 'normalsize_icon':{
+              changeSizeState(size_state);
               break;
             }
             case 'close_icon':{
@@ -586,15 +590,15 @@ function Window(title, options){
     switch(_size_state){
       case WindowState.MAXIMIZED:{
         container.classList.add("window_maximized");
-        toggle_max.innerHTML = WindowUtil.getProperty(options, "toggle_maximize_icon", "&#10697;");
+        toggle_max.innerHTML = WindowUtil.getProperty(options, "normalsize_icon", "&#10697;");
         break;
       }
       case WindowState.NORMAL:{
-        toggle_max.innerHTML = WindowUtil.getProperty(options, "toggle_maximize_icon", "&#9744;");
+        toggle_max.innerHTML = WindowUtil.getProperty(options, "maximize_icon", "&#9744;");
         break;
       }
       default:{
-        toggle_max.innerHTML = WindowUtil.getProperty(options, "toggle_maximize_icon", "&#9744;");
+        toggle_max.innerHTML = WindowUtil.getProperty(options, "maximize_icon", "&#9744;");
         console.warn("This state is not allowed (" + _size_state + "); skipping");
       }
     }
@@ -634,6 +638,11 @@ function Window(title, options){
       options.size = { width: 200, height: 150 };
       _size = options.size;
     }
+
+    var old_size = {
+      width: options.size.width,
+      height: options.size.height
+    };
 
     size.width = WindowUtil.getProperty(_size, "width", 200);
     size.height = WindowUtil.getProperty(_size, "height", 150);
@@ -698,7 +707,7 @@ function Window(title, options){
 
     updatePosition();
 
-    self.on("update_size")();
+    self.on("update_size")({old: old_size, size});
   }
 
   function updateSelected(){
@@ -706,7 +715,7 @@ function Window(title, options){
       return;
     }
 
-    self.on("update_selected")
+    self.on("update_selected")();
 
     var _selected = WindowUtil.getProperty(options, "selected", false);
 
@@ -796,6 +805,11 @@ function Window(title, options){
       _position = options.position;
     }
 
+    var old_position = {
+      x: options.position.x,
+      y: options.position.y
+    }
+
     position.x = WindowUtil.getProperty(_position, "x", 0);
     position.y = WindowUtil.getProperty(_position, "y", 0);
 
@@ -820,7 +834,7 @@ function Window(title, options){
     container.style.left = position.x + "px";
     container.style.top = position.y + "px";
 
-    self.on("update_position")();
+    self.on("update_position")({old: old_position, new: position});
   }
 
   function updateEvents(){
@@ -847,6 +861,14 @@ function Window(title, options){
     }
 
     events[ev] = callback;
+  }
+
+  this.removeOn = function(ev){
+    if(!living){
+      return;
+    }
+
+    delete events[ev];
   }
 
   function updateBarVisible(){

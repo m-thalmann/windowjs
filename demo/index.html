@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Window Test</title>
+
+	<meta charset="UTF-8" />
+
+	<link rel="stylesheet" href="../window.css" />
+	<script src="../window.js"></script>
+
+	<style>
+		*{
+			box-sizing: border-box;
+			position: relative;
+		}
+
+		html, body{
+			height: 100%;
+			font-family: sans-serif;
+		}
+
+		h1{
+			font-size: 2em;
+			margin: 0.5em 0;
+		}
+
+		body{
+			padding: 5px;
+			margin: 0;
+		}
+
+		#mycontent{
+			padding: 10px;
+			text-align: justify;
+		}
+	</style>
+
+	<script>
+		var win;
+
+		window.onload = function(){
+			win = new Window("Title", {
+				state: WindowState.NORMAL,
+				size: {
+					width: 500,
+					height: 250
+				},
+				selected: true,
+			});
+
+			win.content.id = "mycontent";
+			win.content.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error amet aliquam labore animi consectetur. Molestias doloribus corporis tempora fuga quae. Culpa harum, sed odio quasi dolor sapiente deleniti, eos reprehenderit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A magni, doloremque temporibus iusto tenetur vel, dignissimos aperiam dolorem nam commodi, molestias reprehenderit beatae praesentium, est. Excepturi vel omnis dolore quibusdam.';
+		};
+	</script>
+</head>
+
+<body>
+	<button onclick="win.show();">Show</button>
+	<button onclick="win.reload();">Reload</button>
+</body>
+</html>
