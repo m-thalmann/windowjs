@@ -135,7 +135,7 @@ WindowUtil.getProperty(opt, o, def); // Returns the value of 'o' in the array/ob
 It is possible to attach a event to a window: ``window.on(event, callback);``
 
 | Event | Callback-Parameter(s) | Definition |
-|---------------------|--------------------------------------|----------------------------------------------------------------------------------------------------------|
+|:-------------------:|:------------------------------------:|:--------------------------------------------------------------------------------------------------------:|
 | change_title | {old_title, new_title} | Is triggered, when the title is changed |
 | reload | - | Is triggered, when the reload function is invoked |
 | resize_start | e[MouseDownEvent] | Is triggered, when one resize-handle is clicked |
