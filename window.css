@@ -49,6 +49,8 @@
 .window .window_bar .window_icon{
   margin: 0 10px;
   text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
 }
 
 .window .window_bar .window_title{
@@ -56,6 +58,7 @@
   padding: 5px;
   overflow: hidden;
   max-width: calc(100% - 150px);
+  vertical-align: middle;
 }
 
 .window .window_bar .window_toggle_buttons{
