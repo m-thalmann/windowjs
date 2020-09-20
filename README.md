@@ -2,7 +2,7 @@
 
 WindowJS is a simple JavaScript library, to display a functional window inside of the browser.
 
-**Demo:** https://m.thalmann.bz.it/prod/windowjs/demo.html
+**Demo:** prod.thalmann.it/windowjs/demo.html
 
 ## Navigation
 - [Installation](#installation)
