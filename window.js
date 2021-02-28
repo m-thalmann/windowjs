@@ -82,6 +82,13 @@ function Window(title, options){
       y: 0
     };
   }
+  
+  if(typeof options.position.x !== "object"){
+    options.position.x = 0;
+  }
+  if(typeof options.position.y !== "object"){
+    options.position.y = 0;
+  }
 
   this.getTitle = function(){
     if(!living){
