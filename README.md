@@ -84,6 +84,7 @@ win.isMinimized();                   // Returns true, if the window is minimized
 win.hide();                          // Hides the window
 win.isHidden();                      // Returns true, if the window is hidden, otherwise false
 win.isVisible();                     // Returns true, if the window is not minimized and not hidden, otherwise false
+win.isSelected();                    // Returns true, if the window is selected
 
 win.getSize();                       // Returns the size of the window in pixels
 win.getPosition();                   // Returns the offset position of the top left corner to the parent element

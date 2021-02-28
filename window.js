@@ -1017,6 +1017,14 @@ function Window(title, options){
     return size_state == WindowState.NORMAL;
   }
 
+  this.isSelected = function(){
+    if(!living){
+      return;
+    }
+
+    return WindowUtil.getProperty(options, "selected", false);
+  }
+
   this.reset = function(){
     if(!living){
       return;
