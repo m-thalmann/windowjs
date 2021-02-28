@@ -76,6 +76,13 @@ function Window(title, options){
     options = {};
   }
 
+  if(typeof options.position !== "object"){
+    options.position = {
+      x: 0,
+      y: 0
+    };
+  }
+
   this.getTitle = function(){
     if(!living){
       return;
@@ -93,7 +100,7 @@ function Window(title, options){
       throw new Error("Parameter 1 must be of type string");
     }
 
-    self.on("change_title")({"old": title, "new": _title});
+    self.on("change_title")({old_title: title, new_title: _title});
 
     title = _title;
 
@@ -560,7 +567,7 @@ function Window(title, options){
       throw new Error("Parameter 1 must be WindowState.NORMAL or WindowState.MAXIMIZED");
     }
 
-    self.on("change_state")({"old": size_state, "new": _state});
+    self.on("change_state")({old_state: size_state, new_state: _state});
 
     size_state = _state;
 
@@ -576,7 +583,7 @@ function Window(title, options){
       throw new Error("Parameter 1 must be WindowState.HIDDEN or WindowState.MINIMIZED or WindowState.SHOWN");
     }
 
-    self.on("change_window_state")({"old": display_state, "new": _window_state});
+    self.on("change_window_state")({old_window_state: display_state, new_window_state: _window_state});
 
     display_state = _window_state;
 
@@ -707,7 +714,7 @@ function Window(title, options){
 
     updatePosition();
 
-    self.on("update_size")({old: old_size, size});
+    self.on("update_size")({old_size: old_size, new_size: size});
   }
 
   function updateSelected(){
@@ -834,7 +841,7 @@ function Window(title, options){
     container.style.left = position.x + "px";
     container.style.top = position.y + "px";
 
-    self.on("update_position")({old: old_position, new: position});
+    self.on("update_position")({old_position: old_position, new_position: position});
   }
 
   function updateEvents(){
