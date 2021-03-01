@@ -77,19 +77,9 @@ function Window(title, options){
   }
 
   if(typeof options.position !== "object"){
-    options.position = {
-      x: 0,
-      y: 0
-    };
+    options.position = {};
   }
   
-  if(typeof options.position.x !== "object"){
-    options.position.x = 0;
-  }
-  if(typeof options.position.y !== "object"){
-    options.position.y = 0;
-  }
-
   this.getTitle = function(){
     if(!living){
       return;
@@ -812,12 +802,14 @@ function Window(title, options){
 
     var parent = container.parentElement;
 
-    var _position = WindowUtil.getProperty(options, "position", "");
-
-    if(_position == ""){
-      options.position = { x: (parent.offsetWidth / 2 - container.offsetWidth / 2), y: (parent.offsetHeight / 2 - container.offsetHeight / 2) };
-      _position = options.position;
+    if(typeof options.position.x !== "number"){
+      options.position.x = (parent.offsetWidth / 2 - container.offsetWidth / 2);
     }
+    if(typeof options.position.y !== "number"){
+      options.position.y = (parent.offsetHeight / 2 - container.offsetHeight / 2);
+    }
+
+    var _position = options.position;
 
     var old_position = {
       x: options.position.x,
